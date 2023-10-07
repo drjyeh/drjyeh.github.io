@@ -1,17 +1,16 @@
 
-# A very simple Flask Hello World app for you to get started with...
 # pip install flask-sock
 from flask import Flask, request, jsonify, Response, render_template
 # from flask_sock import Sock
 import io
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
+# from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+# from matplotlib.figure import Figure
+# import matplotlib.pyplot as plt
 import json
 
 
-plt.rcParams["figure.figsize"] = [7.50, 3.50]
-plt.rcParams["figure.autolayout"] = True
+# plt.rcParams["figure.figsize"] = [7.50, 3.50]
+# plt.rcParams["figure.autolayout"] = True
 
 data = []
 metadata = {}
@@ -129,38 +128,38 @@ def chartjs():
 def googlechart():
     return render_template('linegl.html', title=title, xlabel=xlabel, ylabel=ylabel, url=url)
 
-@app.route('/linemt')
-def plot_png():
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
+# @app.route('/linemt')
+# def plot_png():
+#     fig = Figure()
+#     axis = fig.add_subplot(1, 1, 1)
 
-    with open(datafile, "r") as infile:
-        content = json.load(infile)
+#     with open(datafile, "r") as infile:
+#         content = json.load(infile)
 
-    xscale = content['metadata']['T_sample']
-    data = content['data']
+#     xscale = content['metadata']['T_sample']
+#     data = content['data']
 
-    dtasum = [0] * len(data[0]['data'])
-    for pkg in data:
-        axis.plot([i*xscale for i in range(len(pkg['data']))], pkg['data'], label=pkg['label'])
-        dtasum = [dtasum[i] + pkg['data'][i] for i in range(len(dtasum))]
-    axis.plot([i*xscale for i in range(len(pkg['data']))], dtasum, label='total')
+#     dtasum = [0] * len(data[0]['data'])
+#     for pkg in data:
+#         axis.plot([i*xscale for i in range(len(pkg['data']))], pkg['data'], label=pkg['label'])
+#         dtasum = [dtasum[i] + pkg['data'][i] for i in range(len(dtasum))]
+#     axis.plot([i*xscale for i in range(len(pkg['data']))], dtasum, label='total')
 
-    valleys = getvalleys1(dtasum, sum(dtasum)/len(dtasum), 10)
-    valtime = [i*xscale for i in valleys]
-    axis.scatter(valtime, [sum(dtasum)/len(dtasum)] * len(valleys))
-
-
-    axis.set_xlabel(xlabel)
-    axis.set_ylabel(ylabel)
-    axis.set_title(title)
-
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
+#     valleys = getvalleys1(dtasum, sum(dtasum)/len(dtasum), 10)
+#     valtime = [i*xscale for i in valleys]
+#     axis.scatter(valtime, [sum(dtasum)/len(dtasum)] * len(valleys))
 
 
-if __name__ == "__main__":        # on running python app.py
-    app.run(debug=True)                     # run the flask app
-# sock = Sock(app)
+#     axis.set_xlabel(xlabel)
+#     axis.set_ylabel(ylabel)
+#     axis.set_title(title)
+
+#     output = io.BytesIO()
+#     FigureCanvas(fig).print_png(output)
+#     return Response(output.getvalue(), mimetype='image/png')
+
+
+# if __name__ == "__main__":        # on running python app.py
+#     app.run(debug=True)                     # run the flask app
+# # sock = Sock(app)
 
