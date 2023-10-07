@@ -1,2 +1,4 @@
 Flask
 Gunicorn
+matplotlib
+flask_sock
