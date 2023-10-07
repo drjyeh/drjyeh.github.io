@@ -69,11 +69,11 @@ def hello_world():
 #     return 'Data Graphing'
     return render_template('index.html')  
 
-# @sock.route('/echo')
-# def echo(sock):
-#     while True:
-#         data = sock.receive()
-#         sock.send(data)
+@sock.route('/echo')
+def echo(sock):
+    while True:
+        data = sock.receive()
+        sock.send(data)
 
 @app.route('/data', methods=['GET','POST'])
 def receive_data():
