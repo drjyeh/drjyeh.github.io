@@ -3,9 +3,9 @@
 from flask import Flask, request, jsonify, Response, render_template
 # from flask_sock import Sock
 import io
-# from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-# from matplotlib.figure import Figure
-# import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 import json
 
 
@@ -62,10 +62,12 @@ def get_data(payload):
         return "unknown type"
 
 app = Flask(__name__)
+sock = Sock(app)
 
 @app.route('/')
 def hello_world():
-    return 'Data Graphing'
+#     return 'Data Graphing'
+    return render_template('index.html')  
 
 # @sock.route('/echo')
 # def echo(sock):
