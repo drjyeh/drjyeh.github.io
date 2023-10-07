@@ -1,7 +1,7 @@
 
 # pip install flask-sock
 from flask import Flask, request, jsonify, Response, render_template
-# from flask_sock import Sock
+from flask_sock import Sock
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
