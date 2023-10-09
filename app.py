@@ -22,8 +22,9 @@ ylabel = "Weight (0.1lb)"
 # url = 'https://hyeh.pythonanywhere.com/data'
 url = 'http://127.0.0.1:5000/data'
 path = '/data'
-# datafile = "mysite/uploads/sample.json"
-datafile = "./uploads/sample.json"
+THIS_FOLDER = Path(__file__).parent.resolve()
+datafile = THIS_FOLDER / "uploads/sample.json"
+# datafile = "./uploads/sample.json"
 
 
 def getvalleys1(data, threshold, width):
