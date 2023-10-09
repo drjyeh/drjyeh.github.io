@@ -1,12 +1,12 @@
 
 # pip install flask-sock
 from flask import Flask, request, jsonify, Response, render_template
-# from flask_sock import Sock
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import json
+from pathlib import Path
 
 plt.rcParams["figure.figsize"] = [7.50, 3.50]
 plt.rcParams["figure.autolayout"] = True
@@ -21,8 +21,9 @@ ylabel = "Weight (0.1lb)"
 # url = 'https://hyeh.pythonanywhere.com/data'
 url = 'http://127.0.0.1:5000/data'
 path = '/data'
-# datafile = "mysite/uploads/sample.json"
-datafile = "./uploads/sample.json"
+THIS_FOLDER = Path(__file__).parent.resolve()
+datafile = THIS_FOLDER / "uploads/sample.json"
+# datafile = "./uploads/sample.json"
 
 
 def getvalleys1(data, threshold, width):
@@ -62,18 +63,22 @@ def get_data(payload):
         return "unknown type"
 
 app = Flask(__name__)
+
+### REMOVE THIS FOR pythonanywhere
+# from flask_sock import Sock
 # sock = Sock(app)
+# @sock.route('/echo')
+# def echo(sock):
+#     while True:
+#         data = sock.receive()
+#         sock.send(data)
 
 @app.route('/')
 def hello_world():
 #     return 'Data Graphing'
     return render_template('index.html')    
 
-# @sock.route('/echo')
-# def echo(sock):
-#     while True:
-#         data = sock.receive()
-#         sock.send(data)
+
 
 @app.route('/data', methods=['GET','POST'])
 def receive_data():
@@ -104,9 +109,8 @@ def valleys():
         dtasum = [dtasum[i] + pkg['data'][i] for i in range(len(dtasum))]
 
     valleys = getvalleys1(dtasum, sum(dtasum)/len(dtasum), 10)
-    valtime = [i*xscale for i in valleys]
 
-    return jsonify(valtime)
+    return jsonify(valleys)
 
 
 @app.route('/linecv')

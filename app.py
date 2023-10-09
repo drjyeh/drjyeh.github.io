@@ -1,13 +1,12 @@
 
-# A very simple Flask Hello World app for you to get started with...
 # pip install flask-sock
 from flask import Flask, request, jsonify, Response, render_template
-from flask_sock import Sock
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import json
+from pathlib import Path
 
 plt.rcParams["figure.figsize"] = [7.50, 3.50]
 plt.rcParams["figure.autolayout"] = True
@@ -64,18 +63,22 @@ def get_data(payload):
         return "unknown type"
 
 app = Flask(__name__)
+
+### REMOVE THIS FOR pythonanywhere
+from flask_sock import Sock
 sock = Sock(app)
+@sock.route('/echo')
+def echo(sock):
+    while True:
+        data = sock.receive()
+        sock.send(data)
 
 @app.route('/')
 def hello_world():
 #     return 'Data Graphing'
     return render_template('index.html')    
 
-@sock.route('/echo')
-def echo(sock):
-    while True:
-        data = sock.receive()
-        sock.send(data)
+
 
 @app.route('/data', methods=['GET','POST'])
 def receive_data():
