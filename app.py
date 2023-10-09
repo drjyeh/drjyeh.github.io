@@ -105,9 +105,8 @@ def valleys():
         dtasum = [dtasum[i] + pkg['data'][i] for i in range(len(dtasum))]
 
     valleys = getvalleys1(dtasum, sum(dtasum)/len(dtasum), 10)
-    valtime = [i*xscale for i in valleys]
 
-    return jsonify(valtime)
+    return jsonify(valleys)
 
 
 @app.route('/linecv')

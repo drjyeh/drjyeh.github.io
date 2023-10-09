@@ -5,34 +5,28 @@
 <div id="myChart" style="width:100%;max-width:600px"></div>
 
 <script>
-url = window.location.protocol + "//" + window.location.host + "/data";
+urldata = window.location.protocol + "//" + window.location.host + "/data";
+urlvalleys = window.location.protocol + "//" + window.location.host + "/valleys";
 
 title = '{{ title }}';
 xlabel = '{{ xlabel }}';
 ylabel = '{{ ylabel }}';
 
-function getvalleys1(data, threshold, width) {
-  valleys = [];
-  numval = width;
+var dv;
+var valleys;
+var ft;
+var vt;
 
-  for (i in data)
-    if (data[i] < threshold) {
-      if (numval > 0) {
-        numval -= 1;
-        if (numval <=0)
-          valleys.push(i);
-      }
-    } else
-      numval = width;
-
-  return valleys;
-}
-
-ft = fetch(url)
+ft = fetch(urldata)
     .then((response) => response.json())
-    .then((data) => doit(data));
+    .then((json) => {dv = json; 
+    	vt = fetch(urlvalleys)
+    		.then((response) => response.json())
+    		.then((json) => {valleys = json; doit(); });});
+    	
+console.log(ft);
 
-function doit(dv) {
+function doit() {
     xscale = dv.metadata.T_sample;
     len = dv.data[0].data.length;
     var xv = Array.from(Array(len), (_,i)=> i*xscale);
@@ -52,7 +46,7 @@ function doit(dv) {
         // console.log(ev);
     }
 
-    ev = {
+    let ev = {
           x: xv,
           y: sv,
           name: "Total",
@@ -62,7 +56,6 @@ function doit(dv) {
     console.log(fv);
 
     sm = sv.reduce((a, b) => a + b, 0) / sv.length;
-    valleys = getvalleys1(sv, sm, 10);
     valtime = valleys.map((r,i)=>r*xscale);
 
     ev = {
@@ -72,7 +65,7 @@ function doit(dv) {
           mode: "markers"
     };
     fv.push(ev);
-
+    
     const layout = {
       xaxis: {title: xlabel},
       yaxis: {title: ylabel},
@@ -81,22 +74,6 @@ function doit(dv) {
 
     Plotly.newPlot("myChart", fv, layout);
 }
-
-// def getvalleys1(data, threshold, width):
-//   valleys = []
-//   numval = width
-
-//   for i in range(len(data)):
-//     if (data[i] < threshold):
-//       if (numval > 0):
-//         numval -= 1
-//         if (numval <=0):
-//           valleys.append(i)
-//     else:
-//       numval = width
-//   return valleys
-
-
 </script>
 
 </body>
