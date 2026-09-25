@@ -454,3 +454,19 @@ nav a:hover { color: var(--maroon); border-bottom-color: var(--maroon); }
 .personal { margin-top: 36px; padding-top: 20px; border-top: 2px solid var(--navy); max-width: 44em; }
 .personal h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
 .about-body .personal p { font-family: var(--sans); font-size: 1rem; line-height: 1.65; color: var(--muted); margin: 0; }
+
+/* ---------- Beyond the college ---------- */
+.beyond { margin-top: 56px; }
+.beyond h3 { font-size: 1.6rem; margin-bottom: 16px; }
+.beyond ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+.beyond li { padding: 14px 0; border-top: 2px solid var(--navy); color: var(--muted); }
+.beyond strong { display: block; font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+@media (max-width: 760px) { .beyond ul { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ---------- Shared mission ---------- */
+.mission { margin: 0 0 40px; padding: 28px 32px; background: var(--paper); border-left: 4px solid var(--maroon); max-width: 52em; }
+.tint .mission { background: var(--paper); }
+.mission h3 { font-size: 1.4rem; margin-bottom: 8px; }
+.mission p { margin: 0 0 14px; color: var(--muted); }
+.mission blockquote { margin: 0; font-family: var(--serif); font-size: 1.35rem; line-height: 1.5; color: var(--navy); }
+@media (max-width: 760px) { .mission { padding: 20px; } .mission blockquote { font-size: 1.15rem; } }
