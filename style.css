@@ -448,3 +448,9 @@ nav a:hover { color: var(--maroon); border-bottom-color: var(--maroon); }
   .pillars { grid-template-columns: 1fr; gap: 20px; }
   .vision-quote p { font-size: 1.1rem; }
 }
+
+/* ---------- About as a single column with a personal note ---------- */
+.about.about-single { grid-template-columns: 1fr; }
+.personal { margin-top: 36px; padding-top: 20px; border-top: 2px solid var(--navy); max-width: 44em; }
+.personal h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+.about-body .personal p { font-family: var(--sans); font-size: 1rem; line-height: 1.65; color: var(--muted); margin: 0; }
