@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/headshot-800.jpg" imagesrcset="assets/headshot-400.jpg 400w, assets/headshot-800.jpg 800w" imagesizes="(max-width: 760px) 260px, 400px" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
 
   <script type="application/ld+json">
@@ -27,7 +28,7 @@
     "@id": "https://drjyeh.com/",
     "url": "https://drjyeh.com/",
     "name": "Dr. James Hsi-Jen Yeh",
-    "dateModified": "2026-09-24",
+    "dateModified": "2026-10-06",
     "mainEntity": {
       "@type": "Person",
       "@id": "https://drjyeh.com/#person",
@@ -99,6 +100,7 @@
           <li><a href="#leadership">Leadership</a></li>
           <li><a href="#news">News</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="writing/index.html">Writing</a></li>
           <li><a href="#career">Career</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#projects">Projects</a></li>
@@ -122,7 +124,7 @@
           </div>
         </div>
         <figure class="hero-photo">
-          <img src="assets/headshot.jpg" alt="Portrait of Dr. James Yeh" width="800" height="800">
+          <img src="assets/headshot-800.jpg" srcset="assets/headshot-400.jpg 400w, assets/headshot-800.jpg 800w" sizes="(max-width: 760px) 260px, 400px" alt="Portrait of Dr. James Yeh" width="800" height="800" fetchpriority="high" decoding="async">
         </figure>
       </div>
       <ul class="credentials" aria-label="Education">
@@ -223,6 +225,11 @@
       <div class="wrap">
         <h2>News</h2>
         <ul class="news">
+          <li>
+            <p class="news-meta"><span class="tag-new">New essay</span><time datetime="2026-10-06">October 2026</time>, drjyeh.com</p>
+            <h3><a href="writing/himalayan-village-power/index.html">People were dancing in the showers: bringing lasting power to a Himalayan village</a></h3>
+            <p>Dr. Yeh on the international effort to bring lasting electricity, and the first hot showers, to a remote village 10,000 feet up in the Nepal Himalayas.</p>
+          </li>
           <li>
             <p class="news-meta"><time datetime="2026-04">April 2026</time>, SPU Stories</p>
             <h3><a href="https://stories.spu.edu/articles/winning-social-venture-plan">Winning entrepreneurial plan provides a path forward after incarceration</a></h3>
@@ -372,7 +379,7 @@
         <dl class="areas">
           <div>
             <dt>Applied IoT and sustainable energy</dt>
-            <dd>Sensor systems for health monitoring, and pico-hydroelectric power with IoT control for villages in the Nepal Himalayas. Best Paper, IEEE IGESSC 2019.</dd>
+            <dd>Sensor systems for health monitoring, and pico-hydroelectric power with IoT control for villages in the Nepal Himalayas. Best Paper, IEEE IGESSC 2019. <a href="writing/himalayan-village-power/index.html">Read the story</a>.</dd>
           </div>
           <div>
             <dt>Technology commercialization</dt>
